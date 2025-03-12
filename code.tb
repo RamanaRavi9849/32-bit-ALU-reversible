@@ -1,0 +1,73 @@
+`timescale 1ns / 1ps
+
+
+
+module ALU_reversible_tb;
+  
+
+    
+    reg [31:0] A, B;
+    reg [3:0] sel;
+    reg Cin;
+    wire [31:0] F;
+    wire Cout;
+    
+    ALU_reversible_m DUT (
+        .A(A),
+        .B(B),
+        .sel(sel),
+        .Cin(Cin),
+        .F(F),
+        .Cout(Cout)
+    );
+    
+    
+
+    initial begin
+        $monitor("Time=%0t | A=%h, B=%h, sel=%b, Cin=%b -> F=%h, Cout=%b", $time, A, B, sel, Cin, F, Cout);
+        
+        A = 32'h00000005;   
+        B = 32'h00000003;   
+        Cin = 1'b0;
+        
+        sel = 4'b0000;
+        #10;
+        sel = 4'b0001;
+        #10;
+        sel = 4'b0010;
+        #10;
+        sel = 4'b0011;
+        #10;
+        sel = 4'b0100;
+        #10;
+        sel = 4'b0101;
+        #10;
+        sel = 4'b0110;
+        #10;
+         sel = 4'b0111;
+        #10;
+         sel = 4'b1000;
+        #10;
+         sel = 4'b1001;
+        #10;
+         sel = 4'b1010;
+        #10;
+         sel = 4'b1011;
+        #10;
+         sel = 4'b1100;
+        #10;
+         sel = 4'b1101;
+        #10;
+         sel = 4'b1110;
+        #10;
+        
+        
+        
+        $finish;
+    end
+    
+   
+    
+
+
+endmodule
